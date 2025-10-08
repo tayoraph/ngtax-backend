@@ -19,8 +19,8 @@ export const MongoDBConfig: MongooseModuleAsyncOptions = {
    //mongodb+srv://tayoraph_elor_tax_user:sb7t1AhDPTS3UGKd@taxcalculator.anrgx74.mongodb.net/
     const url=  `mongodb+srv://${authPart}${host}?${replica}`; 
    // uri: `mongodb+srv://${authPart}${host}:${port}/${dbName}`, 
-  console.log(url)
-  console.log(FULLURI)
+  // console.log(url)
+  // console.log(FULLURI)
 
     return {
       uri: FULLURI, 

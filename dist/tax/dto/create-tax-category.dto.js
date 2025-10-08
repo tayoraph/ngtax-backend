@@ -45,3 +45,4 @@ __decorate([
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], CreateTaxCategoryDto.prototype, "rate", void 0);
+//# sourceMappingURL=create-tax-category.dto.js.map

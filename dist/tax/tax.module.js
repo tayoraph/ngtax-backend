@@ -12,13 +12,18 @@ const mongoose_1 = require("@nestjs/mongoose");
 const tax_controller_1 = require("./controller/tax.controller");
 const tax_schema_1 = require("./schema/tax.schema");
 const tax_service_1 = require("./service/tax.service");
+const tax_reform_schema_1 = require("./schema/tax-reform.schema");
+const tax_reform_service_1 = require("./service/tax-reform.service");
+const tax_reform_controller_1 = require("./controller/tax-reform.controller");
 let TaxModule = class TaxModule {
 };
 exports.TaxModule = TaxModule;
 exports.TaxModule = TaxModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: tax_schema_1.TaxCategory.name, schema: tax_schema_1.TaxCategorySchema }])],
-        controllers: [tax_controller_1.TaxController],
-        providers: [tax_service_1.TaxService],
+        imports: [mongoose_1.MongooseModule.forFeature([{ name: tax_schema_1.TaxCategory.name, schema: tax_schema_1.TaxCategorySchema }, { name: tax_reform_schema_1.TaxReform.name, schema: tax_reform_schema_1.TaxReformSchema }])],
+        controllers: [tax_controller_1.TaxController, tax_reform_controller_1.TaxReformController],
+        providers: [tax_service_1.TaxService, tax_reform_service_1.TaxReformService],
+        exports: [tax_reform_service_1.TaxReformService]
     })
 ], TaxModule);
+//# sourceMappingURL=tax.module.js.map

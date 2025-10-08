@@ -9,17 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CalculateTaxDto = void 0;
-const class_validator_1 = require("class-validator");
-class CalculateTaxDto {
-}
-exports.CalculateTaxDto = CalculateTaxDto;
+exports.RoleSchema = exports.Role = void 0;
+const mongoose_1 = require("@nestjs/mongoose");
+let Role = class Role {
+};
+exports.Role = Role;
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
-], CalculateTaxDto.prototype, "category", void 0);
+], Role.prototype, "title", void 0);
 __decorate([
-    (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.Min)(0),
-    __metadata("design:type", Number)
-], CalculateTaxDto.prototype, "amount", void 0);
+    (0, mongoose_1.Prop)({ required: true }),
+    __metadata("design:type", String)
+], Role.prototype, "description", void 0);
+exports.Role = Role = __decorate([
+    (0, mongoose_1.Schema)()
+], Role);
+exports.RoleSchema = mongoose_1.SchemaFactory.createForClass(Role);
+//# sourceMappingURL=role.schema.js.map

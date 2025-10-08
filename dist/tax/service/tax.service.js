@@ -24,7 +24,9 @@ let TaxService = class TaxService {
         this.logger = logger;
     }
     async findAll() {
-        return this.taxModel.find().exec();
+        let tax = this.taxModel.find().exec();
+        console.log("tax: ", tax);
+        return tax;
     }
     async calculateTax(dto) {
         this.logger.log(`Calculating tax for category ${dto.category} on amount ${dto.amount}`, 'TaxService');
@@ -85,3 +87,4 @@ exports.TaxService = TaxService = __decorate([
     __param(0, (0, mongoose_1.InjectModel)(tax_schema_1.TaxCategory.name)),
     __metadata("design:paramtypes", [mongoose_2.Model, file_logger_service_1.FileLogger])
 ], TaxService);
+//# sourceMappingURL=tax.service.js.map

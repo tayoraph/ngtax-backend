@@ -44,3 +44,4 @@ exports.TaxCategory = TaxCategory = __decorate([
     (0, mongoose_1.Schema)()
 ], TaxCategory);
 exports.TaxCategorySchema = mongoose_1.SchemaFactory.createForClass(TaxCategory);
+//# sourceMappingURL=tax.schema.js.map

@@ -82,3 +82,4 @@ exports.UsersService = UsersService = __decorate([
     __metadata("design:paramtypes", [mongoose_2.Model,
         config_service_1.AppConfigService])
 ], UsersService);
+//# sourceMappingURL=user.service.js.map

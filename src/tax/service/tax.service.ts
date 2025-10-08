@@ -1,7 +1,7 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { CalculateTaxDto } from '../schema/dto/calculate-tax.dto';
+import { CalculateTaxDto } from '../dto/dto/calculate-tax.dto';
 import { TaxCategory, TaxCategoryDocument } from '../schema/tax.schema';
 import { CreateTaxCategoryDto } from '../dto/create-tax-category.dto';
 import { UpdateTaxCategoryDto } from '../dto/update-tax-category.dto';
@@ -11,14 +11,16 @@ export class TaxService {
   constructor(@InjectModel(TaxCategory.name) private taxModel: Model<TaxCategoryDocument>, private readonly logger: FileLogger) {}
 
   async findAll() {
-    return this.taxModel.find().exec();
+    let tax = this.taxModel.find().exec();
+    console.log("tax: ",tax)
+    return tax
   }
 
   async calculateTax(dto: CalculateTaxDto) {
      this.logger.log(`Calculating tax for category ${dto.category} on amount ${dto.amount}`, 'TaxService');
 
     const tax = await this.taxModel.findOne({ name: dto.category }).exec();
-    if (!tax) throw new NotFoundException('Tax category not found');
+    if (!tax) throw new NotFoundException('Tax category not found');  
 
     const rate = tax.rate ?? 0;
     const calculated = dto.amount * rate;

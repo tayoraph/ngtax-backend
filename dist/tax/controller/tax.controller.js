@@ -16,7 +16,7 @@ exports.TaxController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
 const jwt_auth_guard_1 = require("../../auth/jwt/auth.guard/jwt.auth.guard");
-const calculate_tax_dto_1 = require("../schema/dto/calculate-tax.dto");
+const calculate_tax_dto_1 = require("../dto/dto/calculate-tax.dto");
 const tax_service_1 = require("../service/tax.service");
 const create_tax_category_dto_1 = require("../dto/create-tax-category.dto");
 const update_tax_category_dto_1 = require("../dto/update-tax-category.dto");
@@ -60,7 +60,7 @@ __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], TaxController.prototype, "getAll", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
@@ -69,7 +69,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [calculate_tax_dto_1.CalculateTaxDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], TaxController.prototype, "calculate", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
@@ -78,7 +78,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_tax_category_dto_1.CreateTaxCategoryDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], TaxController.prototype, "addCategory", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
@@ -88,7 +88,7 @@ __decorate([
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_tax_category_dto_1.UpdateTaxCategoryDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], TaxController.prototype, "updateCategory", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
@@ -97,7 +97,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], TaxController.prototype, "deleteCategory", null);
 exports.TaxController = TaxController = __decorate([
     (0, swagger_1.ApiTags)('Tax'),
@@ -105,3 +105,4 @@ exports.TaxController = TaxController = __decorate([
     (0, common_1.Controller)('tax'),
     __metadata("design:paramtypes", [tax_service_1.TaxService])
 ], TaxController);
+//# sourceMappingURL=tax.controller.js.map

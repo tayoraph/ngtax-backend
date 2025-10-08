@@ -4,7 +4,8 @@
   "scripts": {
     "start": "nest start",
     "start:dev": "nest start --watch",
-    "build": "nest build"
+    "build": "nest build",
+    "start:debug": "nest start --debug --watch"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -14,7 +15,7 @@
     "@nestjs/mongoose": "^10.0.0",
     "@nestjs/passport": "^10.0.0",
     "@nestjs/platform-express": "^10.0.0",
-    "@nestjs/swagger": "^6.2.1",
+    "@nestjs/swagger": "^7.0.0",
     "bcrypt": "^5.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.2",
@@ -29,6 +30,7 @@
     "@nestjs/cli": "^10.0.0",
     "@types/bcrypt": "^6.0.0",
     "@types/passport-jwt": "^4.0.1",
-    "typescript": "^5.1.0"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   }
 }

@@ -37,3 +37,4 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], SignupDto.prototype, "tin", void 0);
+//# sourceMappingURL=signup.dto.js.map
