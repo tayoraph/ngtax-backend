@@ -352,14 +352,12 @@ let TaxReformService = class TaxReformService {
             throw new common_1.NotFoundException('Tax data not found');
         }
         const formatCurrency = (value) => `₦${value.toLocaleString('en-NG', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
-        // Helper to parse range strings like "₦800,000 – ₦6,000,000 per year"
         const parseRange = (rangeStr) => {
             const numbers = rangeStr.match(/[\d,]+/g)?.map(n => Number(n.replace(/,/g, '')));
-            if (!numbers || numbers.length < 2)
+            if (!numbers || numbers.length < 1)
                 return [0, Infinity];
             return [numbers[0], numbers[1] || Infinity];
         };
-        // Check exemption conditions for a tax category
         const checkExemptions = (taxCategory, amount) => {
             if (!taxCategory.exemptions)
                 return false;
@@ -367,25 +365,20 @@ let TaxReformService = class TaxReformService {
                 switch (exemption.type) {
                     case 'incomeBelow':
                     case 'turnoverBelow':
-                        if (amount <= exemption.threshold)
-                            return true;
-                        break;
                     case 'gainsBelow':
                         if (amount <= exemption.threshold)
                             return true;
                         break;
-                    // Add more exemption logic here as needed
                 }
             }
             return false;
         };
-        // Calculate tax for a given category, respecting exemptions
         const calculateCategoryTax = (taxCategory, amount) => {
             if (checkExemptions(taxCategory, amount))
                 return 0;
             return (amount * (taxCategory.ratePercent || 0)) / 100;
         };
-        // Check Individuals
+        // Handle individuals
         const individuals = taxData.Individuals ?? {};
         for (const categoryName in individuals) {
             const category = individuals[categoryName];
@@ -408,24 +401,48 @@ let TaxReformService = class TaxReformService {
                         salaryRange: category.SalaryRange
                     };
                 }
-                // Sum up tax from all categories (PIT, VAT, CGT, etc) after exemptions
                 let totalTax = 0;
+                const taxCategories = [];
+                const exemptedTaxCategories = [];
                 for (const taxCategory of category.TaxCategories) {
-                    totalTax += calculateCategoryTax(taxCategory, income);
+                    const isExempted = checkExemptions(taxCategory, income);
+                    const taxAmount = calculateCategoryTax(taxCategory, income);
+                    if (isExempted) {
+                        exemptedTaxCategories.push(taxCategory.name);
+                    }
+                    else {
+                        taxCategories.push(taxCategory.name);
+                    }
+                    totalTax += taxAmount;
                 }
-                return {
+                //**** */ to add rate to the tax category 
+                //  for (const taxCategory of category.TaxCategories) {
+                //   const isExempted = checkExemptions(taxCategory, income);
+                //   const taxAmount = calculateCategoryTax(taxCategory, income);
+                //   const taxData = { name: taxCategory.name, rate: taxCategory.rate || 0 };
+                //   if (isExempted) {
+                //     exemptedTaxCategories.push(taxData);
+                //   } else {
+                //     taxCategories.push(taxData);
+                //   }
+                //   totalTax += taxAmount;
+                // }
+                let resp = {
                     categoryType: 'individual',
                     categoryName,
                     role: matchedRole.title,
                     description: matchedRole.description,
                     salaryRange: category.SalaryRange,
-                    taxCategories: category.TaxCategories.map((t) => t.name),
+                    taxCategories,
+                    exemptedTaxCategories,
                     estimatedTax: totalTax,
                     monthlyTax: Number((totalTax / 12).toFixed(2))
                 };
+                console.log(resp);
+                return resp;
             }
         }
-        // Check Businesses
+        // Handle businesses
         const businesses = taxData.Businesses ?? {};
         for (const categoryName in businesses) {
             const category = businesses[categoryName];
@@ -449,8 +466,18 @@ let TaxReformService = class TaxReformService {
                     };
                 }
                 let totalTax = 0;
+                const taxCategories = [];
+                const exemptedTaxCategories = [];
                 for (const taxCategory of category.TaxCategories) {
-                    totalTax += calculateCategoryTax(taxCategory, income);
+                    const isExempted = checkExemptions(taxCategory, income);
+                    const taxAmount = calculateCategoryTax(taxCategory, income);
+                    if (isExempted) {
+                        exemptedTaxCategories.push(taxCategory.name);
+                    }
+                    else {
+                        taxCategories.push(taxCategory.name);
+                    }
+                    totalTax += taxAmount;
                 }
                 return {
                     categoryType: 'business',
@@ -458,7 +485,8 @@ let TaxReformService = class TaxReformService {
                     role: matchedRole.title,
                     description: matchedRole.description,
                     turnoverRange: category.TurnoverRange,
-                    taxCategories: category.TaxCategories.map((t) => t.name),
+                    taxCategories,
+                    exemptedTaxCategories,
                     estimatedTax: totalTax,
                     monthlyTax: Number((totalTax / 12).toFixed(2))
                 };

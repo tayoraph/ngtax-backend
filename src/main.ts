@@ -8,8 +8,8 @@ import { ResponseInterceptor } from './common/filters/response.interceptor';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
-
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+//  app.setGlobalPrefix('nest-basic')
+  app.useGlobalPipes(new ValidationPipe({  transform: true }));
   app.useGlobalFilters(new AllExceptionsFilter());
   app.useGlobalInterceptors(new ResponseInterceptor());
 
@@ -19,10 +19,6 @@ const routes = router.stack
   .filter((r:any) => r.route)
   .map((r:any) => `${Object.keys(r.route.methods).join(',').toUpperCase()} ${r.route.path}`);
 
-// console.log('Registered routes:', routes);
-// console.log('router:', router);
-// console.log('server :', server);
-
   const config = new DocumentBuilder()
     .setTitle('Nigeria Tax API')
     .setDescription('API to manage Nigerian tax categories and calculations')
@@ -31,8 +27,8 @@ const routes = router.stack
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('eltax', app, document);
-
-  await app.listen(7777);
+  var port = process.env.PORT ||7777
+  await app.listen(port);
   console.log(`App is running at ${await app.getUrl()}`)
   console.log(`Current environment is ${process.env.NODE_ENV}`)
 

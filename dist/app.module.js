@@ -15,7 +15,8 @@ const file_logger_service_1 = require("./common/logger/file-logger.service");
 const logger_module_1 = require("./common/logger/logger.module");
 const config_module_1 = require("./config/config.module");
 const db_config_1 = require("./config/db.config");
-const url = "mongodb+srv://tayoraph_elor_tax_user:sb7t1AhDPTS3UGKd@taxcalculator.anrgx74.mongodb.net/";
+const learn_module_1 = require("./learn/learn.module");
+const mongodbService_1 = require("./shared/mongodbService");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -28,12 +29,14 @@ exports.AppModule = AppModule = __decorate([
             logger_module_1.LoggerModule, // import global module **once** here
             auth_module_1.AuthModule,
             tax_module_1.TaxModule,
+            learn_module_1.LearnModule,
         ],
         providers: [
             {
                 provide: common_1.Logger,
                 useClass: file_logger_service_1.FileLogger, // Use custom file logger globally
             },
+            mongodbService_1.MongoService
         ],
     })
 ], AppModule);

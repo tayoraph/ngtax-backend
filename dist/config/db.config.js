@@ -11,17 +11,13 @@ exports.MongoDBConfig = {
         const host = configService.get('DB_HOST');
         const port = configService.get('DB_PORT');
         const dbName = configService.get('DB_NAME');
-        const FULLURI = configService.get('MONGODB_URI_DEV');
+        const FULLURI_DEV = configService.get('MONGODB_URI_DEV');
+        const FULLURI_PD = configService.get('MONGODB_URI_PROD');
         const replica = configService.get('DB_REPLICA'); // optional
         const authPart = username && password ? `${username}:${password}@` : '';
-        //const url = "mongodb+srv://tayoraph_elor_tax_user:sb7t1AhDPTS3UGKd@taxcalculator.anrgx74.mongodb.net/";
-        //mongodb+srv://tayoraph_elor_tax_user:sb7t1AhDPTS3UGKd@taxcalculator.anrgx74.mongodb.net/
         const url = `mongodb+srv://${authPart}${host}?${replica}`;
-        // uri: `mongodb+srv://${authPart}${host}:${port}/${dbName}`, 
-        // console.log(url)
-        // console.log(FULLURI)
         return {
-            uri: FULLURI,
+            uri: FULLURI_PD,
             dbName,
             useUnifiedTopology: true,
         };

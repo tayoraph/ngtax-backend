@@ -7,7 +7,9 @@ import { FileLogger } from './common/logger/file-logger.service';
 import { LoggerModule } from './common/logger/logger.module';
 import { AppConfigModule } from './config/config.module';
 import { MongoDBConfig } from './config/db.config';
- const url = "mongodb+srv://tayoraph_elor_tax_user:sb7t1AhDPTS3UGKd@taxcalculator.anrgx74.mongodb.net/";
+import { LearnModule } from './learn/learn.module';
+import { MongoService } from './shared/mongodbService';
+
 @Module({
   imports: [
     AppConfigModule, // Import global config
@@ -16,6 +18,7 @@ import { MongoDBConfig } from './config/db.config';
     LoggerModule, // import global module **once** here
     AuthModule,
     TaxModule,
+    LearnModule,
     
   ],
   providers: [
@@ -23,6 +26,7 @@ import { MongoDBConfig } from './config/db.config';
       provide: Logger,
       useClass: FileLogger, // Use custom file logger globally
     },
+    MongoService
   ],
 })
 export class AppModule {}
