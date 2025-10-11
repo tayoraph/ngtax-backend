@@ -8,7 +8,6 @@ import { LoggerModule } from './common/logger/logger.module';
 import { AppConfigModule } from './config/config.module';
 import { MongoDBConfig } from './config/db.config';
 import { LearnModule } from './learn/learn.module';
-import { MongoService } from './shared/mongodbService';
 
 @Module({
   imports: [
@@ -26,7 +25,6 @@ import { MongoService } from './shared/mongodbService';
       provide: Logger,
       useClass: FileLogger, // Use custom file logger globally
     },
-    MongoService
   ],
 })
 export class AppModule {}

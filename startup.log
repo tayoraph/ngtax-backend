@@ -1,0 +1,41 @@
+[2025-10-10T23:37:59.024Z] App started
+[2025-10-11T08:12:40.775Z] App started
+[2025-10-11T08:12:50.020Z] App started
+[2025-10-11T08:35:52.349Z] App started
+[2025-10-11T08:38:39.481Z] App started
+[2025-10-11T16:52:14.233Z] App started
+[2025-10-11T18:17:17.742Z] App started
+[2025-10-11T18:24:05.351Z] App started
+[2025-10-11T18:30:36.008Z] App started
+[2025-10-11T18:31:18.014Z] LoggerService initialized
+[2025-10-11T18:31:31.707Z] get roles request entered service layer
+[2025-10-11T18:31:32.150Z] get role request data is [object Object]
+[2025-10-11T18:32:11.156Z] App started
+[2025-10-11T18:32:20.252Z] LoggerService initialized
+[2025-10-11T19:03:12.460Z] App started
+[2025-10-11T19:03:29.309Z] LoggerService initialized
+[2025-10-11T19:05:26.508Z] App started
+[2025-10-11T19:05:48.666Z] LoggerService initialized
+[2025-10-11T19:07:55.149Z] App started
+[2025-10-11T19:08:05.285Z] LoggerService initialized
+[2025-10-11T19:09:28.960Z] App started
+[2025-10-11T19:09:38.662Z] LoggerService initialized
+[2025-10-11T19:09:57.685Z] App started
+MONGO_URI:', process.env.MONGODB_URI_PROD[2025-10-11T19:10:07.096Z] App started
+MONGO_URI:'mongodb+srv://tayoraph_elor_tax_user:sb7t1AhDPTS3UGKd@taxcalculator.anrgx74.mongodb.net/?retryWrites=true&w=majority&appName=taxcalculator[2025-10-11T19:10:15.053Z] LoggerService initialized
+[2025-10-11T19:26:10.877Z] get roles request entered service layer
+[2025-10-11T19:26:11.367Z] get role request data is [object Object]
+[2025-10-11T19:26:55.976Z] get roles request entered service layer
+[2025-10-11T19:26:56.639Z] get role request data is [object Object]
+[2025-10-11T19:35:12.246Z] App started
+MONGO_URI:'mongodb+srv://tayoraph_elor_tax_user:sb7t1AhDPTS3UGKd@taxcalculator.anrgx74.mongodb.net/?retryWrites=true&w=majority&appName=taxcalculator[2025-10-11T19:35:21.171Z] LoggerService initialized
+[2025-10-11T19:40:21.543Z] App started
+MONGO_URI:'mongodb+srv://tayoraph_elor_tax_user:sb7t1AhDPTS3UGKd@taxcalculator.anrgx74.mongodb.net/?retryWrites=true&w=majority&appName=taxcalculatorDB name:'ngtax[2025-10-11T19:40:26.533Z] LoggerService initialized
+[2025-10-11T19:41:13.180Z] App started
+MONGO_URI:'mongodb+srv://tayoraph_elor_tax_user:sb7t1AhDPTS3UGKd@taxcalculator.anrgx74.mongodb.net/?retryWrites=true&w=majority&appName=taxcalculatorDB name:'ngtax[2025-10-11T19:41:33.155Z] LoggerService initialized
+[2025-10-11T19:48:16.509Z] App started
+MONGO_URI:'mongodb+srv://tayoraph_elor_tax_user:sb7t1AhDPTS3UGKd@taxcalculator.anrgx74.mongodb.net/?retryWrites=true&w=majority&appName=taxcalculatorDB name:'ngtax[2025-10-11T19:48:40.855Z] LoggerService initialized
+[2025-10-11T20:04:39.522Z] App started
+[2025-10-11T20:04:47.938Z] App started
+[2025-10-11T20:04:53.197Z] App started
+[2025-10-11T20:04:59.274Z] App started

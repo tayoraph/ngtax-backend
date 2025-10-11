@@ -15,6 +15,12 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 var __importStar = (this && this.__importStar) || (function () {
     var ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function (o) {
@@ -33,35 +39,23 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = require("@nestjs/core");
-const app_module_1 = require("./app.module");
-const swagger_1 = require("@nestjs/swagger");
+exports.LoggerService = void 0;
 const common_1 = require("@nestjs/common");
-const http_exception_filter_1 = require("./common/filters/http-exception.filter");
-const response_interceptor_1 = require("./common/filters/response.interceptor");
-// main.ts or app.js
 const fs = __importStar(require("fs"));
-async function bootstrap() {
-    const logStream = fs.createWriteStream('startup.log', { flags: 'a' });
-    logStream.write(`[${new Date().toISOString()}] App started\n`);
-    const app = await core_1.NestFactory.create(app_module_1.AppModule);
-    app.enableCors();
-    app.setGlobalPrefix('elapi');
-    app.useGlobalPipes(new common_1.ValidationPipe({ transform: true }));
-    app.useGlobalFilters(new http_exception_filter_1.AllExceptionsFilter());
-    app.useGlobalInterceptors(new response_interceptor_1.ResponseInterceptor());
-    const config = new swagger_1.DocumentBuilder()
-        .setTitle('Nigeria Tax API')
-        .setDescription('API to manage Nigerian tax categories and calculations')
-        .setVersion('1.0')
-        .addBearerAuth()
-        .build();
-    const document = swagger_1.SwaggerModule.createDocument(app, config);
-    swagger_1.SwaggerModule.setup('eltax', app, document);
-    var port = process.env.PORT || 7777;
-    await app.listen(port);
-    console.log(`App is running at ${await app.getUrl()}`);
-    console.log(`Current environment is ${process.env.NODE_ENV}`);
-}
-bootstrap();
-//# sourceMappingURL=main.js.map
+let LoggerService = class LoggerService {
+    onModuleInit() {
+        this.logStream = fs.createWriteStream('startup.log', { flags: 'a' });
+        this.log(`[${new Date().toISOString()}] LoggerService initialized`);
+    }
+    log(message) {
+        if (!this.logStream) {
+            this.logStream = fs.createWriteStream('startup.log', { flags: 'a' });
+        }
+        this.logStream.write(`${message}\n`);
+    }
+};
+exports.LoggerService = LoggerService;
+exports.LoggerService = LoggerService = __decorate([
+    (0, common_1.Injectable)()
+], LoggerService);
+//# sourceMappingURL=loggerService.js.map

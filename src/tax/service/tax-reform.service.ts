@@ -2,12 +2,13 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { TaxReform, TaxReformDocument } from '../schema/tax-reform.schema';
-
+import { LoggerService } from '../../shared/logger/loggerService';
 @Injectable()
 export class TaxReformService {
   constructor(
     @InjectModel(TaxReform.name)
     private readonly taxReformModel: Model<TaxReformDocument>,
+    private readonly logger: LoggerService
   ) {}
 
   // -----------------------
@@ -127,7 +128,9 @@ export class TaxReformService {
 
   // get roles 
     async getAllRoles(): Promise<any[]> {
+       this.logger.log(`[${new Date().toISOString()}] get roles request entered service layer`);
     const doc = await this.taxReformModel.findOne().lean();
+     this.logger.log(`[${new Date().toISOString()}] get role request data is ${doc}`);
     if (!doc) return [];
 
     const allRoles: any[] = [];

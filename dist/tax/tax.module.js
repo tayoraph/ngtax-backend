@@ -15,6 +15,7 @@ const tax_service_1 = require("./service/tax.service");
 const tax_reform_schema_1 = require("./schema/tax-reform.schema");
 const tax_reform_service_1 = require("./service/tax-reform.service");
 const tax_reform_controller_1 = require("./controller/tax-reform.controller");
+const loggerService_1 = require("../shared/logger/loggerService");
 let TaxModule = class TaxModule {
 };
 exports.TaxModule = TaxModule;
@@ -22,7 +23,7 @@ exports.TaxModule = TaxModule = __decorate([
     (0, common_1.Module)({
         imports: [mongoose_1.MongooseModule.forFeature([{ name: tax_schema_1.TaxCategory.name, schema: tax_schema_1.TaxCategorySchema }, { name: tax_reform_schema_1.TaxReform.name, schema: tax_reform_schema_1.TaxReformSchema }])],
         controllers: [tax_controller_1.TaxController, tax_reform_controller_1.TaxReformController],
-        providers: [tax_service_1.TaxService, tax_reform_service_1.TaxReformService],
+        providers: [tax_service_1.TaxService, tax_reform_service_1.TaxReformService, loggerService_1.LoggerService],
         exports: [tax_reform_service_1.TaxReformService]
     })
 ], TaxModule);

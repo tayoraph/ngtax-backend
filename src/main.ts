@@ -4,20 +4,21 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import { AllExceptionsFilter } from './common/filters/http-exception.filter';
 import { ResponseInterceptor } from './common/filters/response.interceptor';
-
+  // main.ts or app.js
+import * as fs from 'fs';
 async function bootstrap() {
+
+
+const logStream = fs.createWriteStream('startup.log', { flags: 'a' });
+logStream.write(`[${new Date().toISOString()}] App started\n`);
+
   const app = await NestFactory.create(AppModule);
   app.enableCors();
-//  app.setGlobalPrefix('nest-basic')
+  app.setGlobalPrefix('elapi')
   app.useGlobalPipes(new ValidationPipe({  transform: true }));
   app.useGlobalFilters(new AllExceptionsFilter());
   app.useGlobalInterceptors(new ResponseInterceptor());
 
- const server = app.getHttpServer();
-const router = server._events.request._router;
-const routes = router.stack
-  .filter((r:any) => r.route)
-  .map((r:any) => `${Object.keys(r.route.methods).join(',').toUpperCase()} ${r.route.path}`);
 
   const config = new DocumentBuilder()
     .setTitle('Nigeria Tax API')

@@ -16,7 +16,6 @@ const logger_module_1 = require("./common/logger/logger.module");
 const config_module_1 = require("./config/config.module");
 const db_config_1 = require("./config/db.config");
 const learn_module_1 = require("./learn/learn.module");
-const mongodbService_1 = require("./shared/mongodbService");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -36,7 +35,6 @@ exports.AppModule = AppModule = __decorate([
                 provide: common_1.Logger,
                 useClass: file_logger_service_1.FileLogger, // Use custom file logger globally
             },
-            mongodbService_1.MongoService
         ],
     })
 ], AppModule);

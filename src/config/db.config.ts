@@ -18,7 +18,7 @@ export const MongoDBConfig: MongooseModuleAsyncOptions = {
     const replica = configService.get<string>('DB_REPLICA'); // optional
     const authPart = username && password ? `${username}:${password}@` : '';
     const url=  `mongodb+srv://${authPart}${host}?${replica}`; 
-
+    
     return {
       uri: FULLURI_PD, 
       dbName,

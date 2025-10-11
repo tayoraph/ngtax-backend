@@ -17,9 +17,11 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const tax_reform_schema_1 = require("../schema/tax-reform.schema");
+const loggerService_1 = require("../../shared/logger/loggerService");
 let TaxReformService = class TaxReformService {
-    constructor(taxReformModel) {
+    constructor(taxReformModel, logger) {
         this.taxReformModel = taxReformModel;
+        this.logger = logger;
     }
     // -----------------------
     // INSERT DATA
@@ -111,7 +113,9 @@ let TaxReformService = class TaxReformService {
     //#region Get roles 
     // get roles 
     async getAllRoles() {
+        this.logger.log(`[${new Date().toISOString()}] get roles request entered service layer`);
         const doc = await this.taxReformModel.findOne().lean();
+        this.logger.log(`[${new Date().toISOString()}] get role request data is ${doc}`);
         if (!doc)
             return [];
         const allRoles = [];
@@ -499,6 +503,7 @@ exports.TaxReformService = TaxReformService;
 exports.TaxReformService = TaxReformService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)(tax_reform_schema_1.TaxReform.name)),
-    __metadata("design:paramtypes", [mongoose_2.Model])
+    __metadata("design:paramtypes", [mongoose_2.Model,
+        loggerService_1.LoggerService])
 ], TaxReformService);
 //# sourceMappingURL=tax-reform.service.js.map
