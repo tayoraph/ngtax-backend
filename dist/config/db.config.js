@@ -17,7 +17,7 @@ exports.MongoDBConfig = {
         const authPart = username && password ? `${username}:${password}@` : '';
         const url = `mongodb+srv://${authPart}${host}?${replica}`;
         return {
-            uri: FULLURI_PD,
+            uri: FULLURI_DEV,
             dbName,
             useUnifiedTopology: true,
         };

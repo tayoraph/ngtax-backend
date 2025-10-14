@@ -2,6 +2,9 @@ import { Controller, Post, Body, Get, UsePipes, ValidationPipe, Param, Query, Ba
 import { InsertTaxReformDto } from '../dto/dto/tax-reform.dto';
 import { TaxReformService } from '../service/tax-reform.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { CalculateTaxByCategoryDto } from '../dto/dto/calculateTaxByCategory.dto';
+import { TaxCalculationByTaxNameRoleAndIncomeDto } from '../dto/dto/taxbyTaxnameRoleAndIncome.dto';
+import { TaxCalculationByTagnameRoleaEntityndIncomeInput } from '../dto/dto/calcuatetaxByTagnameRoleIncomeAndEntity.dto';
 
 @ApiTags('Tax')
 @ApiBearerAuth()
@@ -64,6 +67,8 @@ export class TaxReformController {
   //#endregion
   
 
+
+
   //#region  calculate exact tax to bepaid and not an estimate 
   // @Post('calculate')
   // async calculateTax(@Body() calculateTaxDto: CalculateTaxDto) {
@@ -72,4 +77,28 @@ export class TaxReformController {
   // }
 
   //#endregion
+
+
+  //#region calculate Tax By Tax Category 
+  @Post('calculateByTaxCategory')
+  //@UsePipes(new ValidationPipe({ whitelist: true, transform: true }))
+  async calculate(@Body() dto: CalculateTaxByCategoryDto) {
+    return this.service.calculateByTaxCategory(dto);
+  }
+  //#endregion
+
+     //#region calculate tax by role, income and taxName 
+  @Post('TaxCalculationByTaxNameRoleAndIncomeDto')
+  async TaxCalculationByTaxNameRoleAndIncomeDto(@Body() dto: TaxCalculationByTaxNameRoleAndIncomeDto) {
+    return await this.service.calculateTaxByRoleAndTaxnameAndIncome(dto);
+  }
+  //#endregion
+
+       //#region calculate tax by role, income and taxName and entity
+  @Post('TaxCalculationByTagnameRoleaEntityndIncomeInput')
+  async TaxCalculationByTagnameRoleaEntityndIncomeInput(@Body() dto: TaxCalculationByTagnameRoleaEntityndIncomeInput) {
+    return await this.service.calculateTaxByRoleAndTaxnameEntityAndIncome(dto);
+  }
+  //#endregion
+  
 }

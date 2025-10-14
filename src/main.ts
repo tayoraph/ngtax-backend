@@ -14,7 +14,7 @@ logStream.write(`[${new Date().toISOString()}] App started\n`);
 
   const app = await NestFactory.create(AppModule);
   app.enableCors();
-  app.setGlobalPrefix('elapi')
+  //app.setGlobalPrefix('elapi')
   app.useGlobalPipes(new ValidationPipe({  transform: true }));
   app.useGlobalFilters(new AllExceptionsFilter());
   app.useGlobalInterceptors(new ResponseInterceptor());

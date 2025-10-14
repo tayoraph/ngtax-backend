@@ -46,7 +46,7 @@ async function bootstrap() {
     logStream.write(`[${new Date().toISOString()}] App started\n`);
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.enableCors();
-    app.setGlobalPrefix('elapi');
+    //app.setGlobalPrefix('elapi')
     app.useGlobalPipes(new common_1.ValidationPipe({ transform: true }));
     app.useGlobalFilters(new http_exception_filter_1.AllExceptionsFilter());
     app.useGlobalInterceptors(new response_interceptor_1.ResponseInterceptor());

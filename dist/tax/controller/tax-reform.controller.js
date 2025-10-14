@@ -17,6 +17,8 @@ const common_1 = require("@nestjs/common");
 const tax_reform_dto_1 = require("../dto/dto/tax-reform.dto");
 const tax_reform_service_1 = require("../service/tax-reform.service");
 const swagger_1 = require("@nestjs/swagger");
+const calculateTaxByCategory_dto_1 = require("../dto/dto/calculateTaxByCategory.dto");
+const taxbyTaxnameRoleAndIncome_dto_1 = require("../dto/dto/taxbyTaxnameRoleAndIncome.dto");
 let TaxReformController = class TaxReformController {
     constructor(service) {
         this.service = service;
@@ -49,6 +51,24 @@ let TaxReformController = class TaxReformController {
             throw new common_1.BadRequestException('Provide valid "role" and numeric "income"');
         }
         return this.service.calculateTaxByRoleAndIncome(role, income);
+    }
+    //#endregion
+    //#region  calculate exact tax to bepaid and not an estimate 
+    // @Post('calculate')
+    // async calculateTax(@Body() calculateTaxDto: CalculateTaxDto) {
+    //   const { roleTitle, amount } = calculateTaxDto;
+    //   return this.taxService.calculateTaxExactMatch(roleTitle, amount);
+    // }
+    //#endregion
+    //#region calculate Tax By Tax Category 
+    //@UsePipes(new ValidationPipe({ whitelist: true, transform: true }))
+    async calculate(dto) {
+        return this.service.calculateByTaxCategory(dto);
+    }
+    //#endregion
+    //#region calculate tax by role, income and taxName 
+    async calculateTax(dto) {
+        return await this.service.calculateTaxByRoleAndTaxnameAndIncome(dto);
     }
 };
 exports.TaxReformController = TaxReformController;
@@ -101,6 +121,22 @@ __decorate([
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], TaxReformController.prototype, "getTaxByRoleAndIncome", null);
+__decorate([
+    (0, common_1.Post)('calculateByTaxCategory')
+    //@UsePipes(new ValidationPipe({ whitelist: true, transform: true }))
+    ,
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [calculateTaxByCategory_dto_1.CalculateTaxByCategoryDto]),
+    __metadata("design:returntype", Promise)
+], TaxReformController.prototype, "calculate", null);
+__decorate([
+    (0, common_1.Post)('TaxCalculationByTaxNameRoleAndIncomeDto'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [taxbyTaxnameRoleAndIncome_dto_1.TaxCalculationByTaxNameRoleAndIncomeDto]),
+    __metadata("design:returntype", Promise)
+], TaxReformController.prototype, "calculateTax", null);
 exports.TaxReformController = TaxReformController = __decorate([
     (0, swagger_1.ApiTags)('Tax'),
     (0, swagger_1.ApiBearerAuth)(),

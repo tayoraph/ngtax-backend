@@ -9,25 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaxCategorySchema = exports.TaxCategory = void 0;
-const mongoose_1 = require("@nestjs/mongoose");
-let TaxCategory = class TaxCategory {
-};
-exports.TaxCategory = TaxCategory;
+exports.TaxCalculationByTaxNameRoleAndIncomeDto = void 0;
+const swagger_1 = require("@nestjs/swagger");
+class TaxCalculationByTaxNameRoleAndIncomeDto {
+}
+exports.TaxCalculationByTaxNameRoleAndIncomeDto = TaxCalculationByTaxNameRoleAndIncomeDto;
 __decorate([
-    (0, mongoose_1.Prop)({ required: true }),
+    (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
-], TaxCategory.prototype, "categoryType", void 0);
+], TaxCalculationByTaxNameRoleAndIncomeDto.prototype, "role", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ required: true }),
+    (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
-], TaxCategory.prototype, "subCategory", void 0);
+], TaxCalculationByTaxNameRoleAndIncomeDto.prototype, "taxName", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: Object, required: true }),
-    __metadata("design:type", Object)
-], TaxCategory.prototype, "data", void 0);
-exports.TaxCategory = TaxCategory = __decorate([
-    (0, mongoose_1.Schema)({ timestamps: true })
-], TaxCategory);
-exports.TaxCategorySchema = mongoose_1.SchemaFactory.createForClass(TaxCategory);
-//# sourceMappingURL=tax-category.schema.js.map
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", Number)
+], TaxCalculationByTaxNameRoleAndIncomeDto.prototype, "incomeOrTurnover", void 0);
+//# sourceMappingURL=taxbyTaxnameRoleAndIncome.dto.js.map

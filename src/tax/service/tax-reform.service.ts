@@ -1,8 +1,13 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { TaxReform, TaxReformDocument } from '../schema/tax-reform.schema';
 import { LoggerService } from '../../shared/logger/loggerService';
+import { CalculateTaxByCategoryDto } from '../dto/dto/calculateTaxByCategory.dto';
+import { stringSimilarity } from '../../utils/string.similarity.utils';
+import { calculateTaxLogic } from '../../utils/tax-calculatorbyRoleTagNameIncome.utils';
+import { TaxCalculationByTagnameRoleaEntityndIncomeLogik } from '../../utils/tac-calculator-by-roleTagNameEntityIncome';
+import { TaxCalculationByTagnameRoleaEntityndIncomeInput } from '../dto/dto/calcuatetaxByTagnameRoleIncomeAndEntity.dto';
 @Injectable()
 export class TaxReformService {
   constructor(
@@ -130,7 +135,6 @@ export class TaxReformService {
     async getAllRoles(): Promise<any[]> {
        this.logger.log(`[${new Date().toISOString()}] get roles request entered service layer`);
     const doc = await this.taxReformModel.findOne().lean();
-     this.logger.log(`[${new Date().toISOString()}] get role request data is ${doc}`);
     if (!doc) return [];
 
     const allRoles: any[] = [];
@@ -573,4 +577,179 @@ async calculateTaxByRoleAndIncome(roleTitle: string, income: number): Promise<an
 
 
   //#endregion
+
+
+//////////////////////////////////Tax by Category
+
+//#region Calculate tax by Category 
+
+  async getDoc() {
+    const doc = await this.taxReformModel.findOne().lean().exec();
+    if (!doc) throw new NotFoundException('Tax data not found.');
+    return doc;
+  }
+
+  // find tax category entry by taxName, optionally limited by entityType/category
+  private findTaxEntry(data: any, taxName: string, entityType?: string, category?: string) {
+    const matches: Array<{ entityType: string; category: string; tax: any; context: any }> = [];
+
+    const searchIn = (etype: 'Individuals' | 'Businesses') => {
+      const group = data?.[etype];
+      if (!group) return;
+      for (const [catKey, catVal] of Object.entries(group)) {
+        const taxes = (catVal as any).TaxCategories || [];
+        for (const t of taxes) {
+          if (String(t.name).toLowerCase() === String(taxName).toLowerCase()) {
+            matches.push({ entityType: etype, category: catKey, tax: t, context: catVal });
+          }
+        }
+      }
+    };
+
+    if (entityType) {
+      if (entityType === 'Individuals' || entityType === 'Businesses') {
+        // restrict to given entityType
+        const group = data?.NigeriaTaxReform2025?.[entityType];
+        if (!group) return [];
+        if (category) {
+          const catVal = group[category];
+          if (!catVal) return [];
+          const taxes = catVal.TaxCategories || [];
+          return taxes.filter((t: any) => String(t.name).toLowerCase() === taxName.toLowerCase())
+            .map((t: any) => ({ entityType, category, tax: t, context: catVal }));
+        } else {
+          // search all categories under entityType
+          for (const [catKey, catVal] of Object.entries(group)) {
+            const taxes = (catVal as any).TaxCategories || [];
+            for (const t of taxes) {
+              if (String(t.name).toLowerCase() === String(taxName).toLowerCase()) {
+                matches.push({ entityType, category: catKey, tax: t, context: catVal });
+              }
+            }
+          }
+          return matches;
+        }
+      } else {
+        return [];
+      }
+    }
+
+    // no entityType constraint — search both
+    searchIn('Individuals');
+    searchIn('Businesses');
+
+    // if a category constraint provided, filter it
+    if (category) {
+      return matches.filter(m => m.category.toLowerCase() === category.toLowerCase());
+    }
+
+    return matches;
+  }
+
+  private isExemptByRules(tax: any, amount: number, dto: CalculateTaxByCategoryDto) {
+    const exemptions = tax.exemptions || [];
+    for (const ex of exemptions) {
+      const type = ex.type;
+      if (type === 'incomeBelow' && dto.taxName.toLowerCase().includes('income')) {
+        if (amount <= Number(ex.threshold)) return { exempt: true, message: ex.message || 'Exempt' };
+      }
+      if (type === 'gainsBelow' && dto.taxName.toLowerCase().includes('gain')) {
+        if (amount <= Number(ex.threshold)) return { exempt: true, message: ex.message || 'Exempt' };
+      }
+      if (type === 'turnoverBelow' && dto.taxName.toLowerCase().includes('company')) {
+        if (amount <= Number(ex.threshold)) return { exempt: true, message: ex.message || 'Exempt' };
+      }
+      if (type === 'goodsServices') {
+        // check dto.item against exemptItems
+        if (!dto.item) continue; // can't decide without item
+        const exemptItems = ex.exemptItems || [];
+        if (exemptItems.map((i: string)=>i.toLowerCase()).includes(dto.item.toLowerCase())) {
+          return { exempt: true, message: ex.message || 'Exempt' };
+        }
+      }
+    }
+    return { exempt: false };
+  }
+
+  /**
+   * Calculate tax for a given taxName and amount. 
+   * If multiple matches exist, uses the first match if not disambiguated by entityType/category.
+   */
+  async calculateByTaxCategory(dto: CalculateTaxByCategoryDto) {
+    const data = await this.getDoc();
+    const matches = this.findTaxEntry(data, dto.taxName, dto.entityType, dto.category);
+
+    if (!matches || matches.length === 0) {
+      throw new NotFoundException(`Tax "${dto.taxName}" not found in stored tax data.`);
+    }
+
+    // choose best match:
+    const match = matches[0];
+
+    const tax = match.tax;
+    const rate = Number(tax.ratePercent);
+    if (isNaN(rate)) throw new BadRequestException('Invalid tax rate stored.');
+
+    // check exemptions
+    const exemption = this.isExemptByRules(tax, dto.amount, dto);
+    if (exemption.exempt) {
+      return {
+        taxName: tax.name,
+        ratePercent: rate,
+        amount: dto.amount,
+        taxToPay: 0,
+        exempt: true,
+        message: exemption.message,
+        matchedEntityType: match.entityType,
+        matchedCategory: match.category,
+      };
+    }
+
+    const taxToPay = (rate / 100) * dto.amount;
+
+    return {
+      taxName: tax.name,
+      ratePercent: rate,
+      amount: dto.amount,
+      taxToPay,
+      exempt: false,
+      matchedEntityType: match.entityType,
+      matchedCategory: match.category,
+    };
+  }
+//#endregion
+
+
+//#region  calculate by role, taxname  and income
+ 
+    async calculateTaxByRoleAndTaxnameAndIncome(dto: { role: string; taxName: string; incomeOrTurnover: number }) {
+    const { role, taxName, incomeOrTurnover } = dto;
+    const taxData = await this.taxReformModel.find().lean();
+    if (!taxData) throw new NotFoundException('Tax data not found.');
+
+    return calculateTaxLogic({
+      role,
+      taxName,
+      incomeOrTurnover,
+      taxData: taxData,
+    });
+  }
+//#endregion
+
+
+
+
+//#region  calculate by role, taxname  and income
+ 
+    async calculateTaxByRoleAndTaxnameEntityAndIncome(dto: TaxCalculationByTagnameRoleaEntityndIncomeInput) {
+    const taxData = await this.taxReformModel.find().lean();;
+    if (!taxData) throw new NotFoundException('Tax data not found.');
+
+    return TaxCalculationByTagnameRoleaEntityndIncomeLogik(
+     dto,
+     taxData
+    );
+  }
+//#endregion
+
 }
