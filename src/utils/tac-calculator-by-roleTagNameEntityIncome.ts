@@ -1,6 +1,7 @@
 import { NotFoundException } from '@nestjs/common';
 import { stringSimilarity } from './string.similarity.utils';
 import { TaxCalculationByTagnameRoleaEntityndIncomeInput } from '../tax/dto/dto/calcuatetaxByTagnameRoleIncomeAndEntity.dto';
+import { formatCurrency } from './currency/currency.utils';
 
 interface TaxCalculationInput {
   role: string;
@@ -75,7 +76,7 @@ function findRoleTax(
 
   if (!foundTax || bestMatchScore < 0.4) {
     throw new NotFoundException(
-      `No matching tax found for role '${role}' and tax '${taxName}' in categoryType '${userType || 'any'}'.`
+      `No matching tax found for role '${role}' and tax '${taxName}' in user Type '${userType || 'any'}', kindly check your input values and try again.`
     );
   }
 
@@ -91,7 +92,7 @@ function applyExemptions(
   categoryType: string,
   category: string,
   role: string
-): TaxResult | null {
+) {
   if (!tax.exemptions?.length) return null;
 
   for (const ex of tax.exemptions) {
@@ -100,15 +101,16 @@ function applyExemptions(
       incomeOrTurnover < ex.threshold
     ) {
       return {
-        taxName: tax.name,
-        ratePercent: tax.ratePercent,
-        amount: incomeOrTurnover,
-        taxToPay: 0,
-        exempt: true,
-        matchedEntityType: categoryType,
-        matchedCategory: category,
-        role,
         message: ex.message || 'Below exemption threshold.',
+        'Tax Category': tax.name,
+        'Rate (%)': tax.ratePercent,
+        'Annual Income Or Turnover': formatCurrency(incomeOrTurnover),
+        'Expected Annual Tax': 0,
+        'Exempt': true,
+         'Matched User Type': categoryType,
+        'Matched Category': category,
+         'Role':role,
+        
       };
     }
   }
@@ -145,16 +147,17 @@ function calculateProgressiveTax(
   const taxToPayMonthly = totalTax/12;
 
   return {
+    'Message': `Progressive ${tax.name} calculated for '${role}'.`,
      'Tax Category': tax.name,
      'Rate (%)': tax.ratePercent,
-    'Amount': incomeOrTurnover,
-    'Expected Annual Tax': Math.round(totalTax),
-    'Expected Monthly Tax':Math.round(taxToPayMonthly),
+    'Annual Income Or Turnover': formatCurrency(incomeOrTurnover),
+    'Expected Annual Tax': formatCurrency(Math.round(totalTax)),
+    'Expected Monthly Tax':formatCurrency(Math.round(taxToPayMonthly)),
     'Exempt':  false,
     'Matched User Type': categoryType,
     'Matched Category': category,
     'Role': role,
-    message: `Progressive ${tax.name} calculated for '${role}'.`,
+    
   };
 }
 
@@ -172,16 +175,17 @@ function calculateFlatTax(
   const taxToPayMonthly = flatTax/12;
 
   return {
+    'Message': `Flat ${tax.name} calculated for '${role}'.`,
     'Tax Category': tax.name,
      'Rate (%)': tax.ratePercent,
-    'Amount': incomeOrTurnover,
-    'Expected Annual Tax': Math.round(flatTax),
-    'Expected Monthly Tax':Math.round(taxToPayMonthly),
+   'Annual Income Or Turnover': formatCurrency(incomeOrTurnover),
+    'Expected Annual Tax': formatCurrency(Math.round(flatTax)),
+    'Expected Monthly Tax':formatCurrency(Math.round(taxToPayMonthly)),
     'Exempt':  false,
     'Matched User Type': categoryType,
     'Matched Category': category,
     'Role': role,
-    'Message': `Flat ${tax.name} calculated for '${role}'.`,
+    
   };
    
 }

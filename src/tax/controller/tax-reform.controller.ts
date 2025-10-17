@@ -35,9 +35,11 @@ export class TaxReformController {
     return this.service.getByRole(role);
   }
 
-  @Get('tax/:taxCategory')
-  getByTaxCategory(@Param('taxCategory') taxCategory: string) :Promise<any>{
-    return this.service.getByTaxCategory(taxCategory);
+  // get roles by tax category 
+
+  @Get('tax/:getRolesByTaxCategory')
+  getRolesByTaxCategory(@Param('getRolesByTaxCategory') taxCategory: string) :Promise<any>{
+    return this.service.getRolesByTaxCategory(taxCategory);
   }
 
 

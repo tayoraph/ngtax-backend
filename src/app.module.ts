@@ -8,6 +8,7 @@ import { LoggerModule } from './common/logger/logger.module';
 import { AppConfigModule } from './config/config.module';
 import { MongoDBConfig } from './config/db.config';
 import { LearnModule } from './learn/learn.module';
+import { UtilityModule } from './utils/util.module';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { LearnModule } from './learn/learn.module';
     AuthModule,
     TaxModule,
     LearnModule,
-    
+   UtilityModule
   ],
   providers: [
     {

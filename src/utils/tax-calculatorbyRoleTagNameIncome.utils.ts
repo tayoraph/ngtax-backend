@@ -1,5 +1,6 @@
 import { NotFoundException } from '@nestjs/common';
 import { stringSimilarity } from './string.similarity.utils';
+import { formatCurrency } from './currency/currency.utils';
 
 interface Role {
   title: string;
@@ -86,7 +87,7 @@ export function calculateTaxLogic({
         return {
           'Tax Category': foundTax.name,
           'Rate (%)': foundTax.ratePercent,
-          'Amount': incomeOrTurnover,
+          'Annual Income Or Turnover': formatCurrency(incomeOrTurnover),
           'Tax To Pay': 0,
           'Exempt': true,
           'Matched User Type': foundCategoryType,
@@ -120,15 +121,15 @@ export function calculateTaxLogic({
     const taxToPayMonthly = taxToPay/12;
 
     return {
+       'Message': `Progressive ${foundTax.name} calculated for '${closestRole}' (matched from '${role}').`,
       'Tax Category': foundTax.name,
       'Rate (%)': foundTax.ratePercent,
-       'Amount': incomeOrTurnover,
-      'Tax To Pay': Math.round(taxToPay),
-      'Expected Monthly Tax':Math.round(taxToPayMonthly),
+       'Annual Income Or Turnover': formatCurrency(incomeOrTurnover),
+      'Tax To Pay': formatCurrency(Math.round(taxToPay)),
+      'Expected Monthly Tax':formatCurrency(Math.round(taxToPayMonthly)),
        'Exempt': false,
       'Matched User Type': foundCategoryType,
       'Matched Category': foundCategory,
-       'Message': `Progressive ${foundTax.name} calculated for '${closestRole}' (matched from '${role}').`,
     };
   }
 
@@ -137,15 +138,16 @@ export function calculateTaxLogic({
   const taxToPayMonthly = taxToPay/12;
 
   return {
+    'Message': `Flat ${foundTax.name} calculated for '${closestRole}' (matched from '${role}').`,
     'Tax Category': foundTax.name,
     'Rate (%)': foundTax.ratePercent,
-    'Amount': incomeOrTurnover,
-    'Expected Annual Tax': Math.round(taxToPay),
-    'Expected Monthly Tax':Math.round(taxToPayMonthly),
+    'Annual Income Or Turnover': formatCurrency(incomeOrTurnover),
+    'Expected Annual Tax': formatCurrency(Math.round(taxToPay)),
+    'Expected Monthly Tax':formatCurrency(Math.round(taxToPayMonthly)),
     'Exempt': false,
     'Matched User Type': foundCategoryType,
     'Matched Category': foundCategory,
-     'Message': `Flat ${foundTax.name} calculated for '${closestRole}' (matched from '${role}').`,
+     
   };
 }
 

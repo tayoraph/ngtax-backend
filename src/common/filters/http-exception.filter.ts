@@ -7,10 +7,16 @@ import {
   Logger,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { EncryptionService } from '../../utils/Security/Aes/Aes';
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
   private logger = new Logger('GlobalException');
+/**
+ *
+ */
+constructor(public encryptionService: EncryptionService) {}
+
 
   catch(exception: unknown, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
@@ -30,17 +36,18 @@ export class AllExceptionsFilter implements ExceptionFilter {
     if (Array.isArray(message)) {
       message = message.join(', ');
     }
-
+    
     // Log safely
     const stack = exception instanceof Error ? exception.stack : '';
     this.logger.error(message, stack, 'AllExceptionsFilter');
 
-    response.status(status).json({
+     let resStr =  JSON.stringify({
       statusCode: status,
       message,
       error: exception instanceof HttpException ? exception.name : 'Error',
       timestamp: new Date().toISOString(),
       path: request.url,
     });
+    response.status(status).json( this.encryptionService.envEnc(resStr));
   }
 }

@@ -16,7 +16,7 @@ logStream.write(`[${new Date().toISOString()}] App started\n`);
   app.enableCors();
   //app.setGlobalPrefix('elapi')
   app.useGlobalPipes(new ValidationPipe({  transform: true }));
-  app.useGlobalFilters(new AllExceptionsFilter());
+  app.useGlobalFilters(new AllExceptionsFilter(new (require('./utils/Security/Aes/Aes').EncryptionService)()));
   app.useGlobalInterceptors(new ResponseInterceptor());
 
 

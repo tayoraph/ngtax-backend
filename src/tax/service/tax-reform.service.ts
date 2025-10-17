@@ -94,40 +94,53 @@ export class TaxReformService {
     throw new NotFoundException(`Role "${roleTitle}" not found`);
   }
 
+  //#region roles Get by Tax Category
+
   // -----------------------
   // GET BY TAX CATEGORY (Optional)
   // -----------------------
-  async getByTaxCategory(taxCategory: string) {
+async getRolesByTaxCategory(taxCategory: string) {
+  try {
     const doc = await this.taxReformModel.findOne().lean();
     if (!doc) throw new NotFoundException('Tax data not found');
 
-    const result: any[] = [];
+    const allRoles: any[] = [];
 
-    for (const [cat, data] of Object.entries(doc.Individuals || {})) {
-      if (
-        data.TaxCategories.some(
-          (tax: any) => tax.toLowerCase() === taxCategory.toLowerCase(),
-        )
-      ) {
-        result.push({ entityType: 'Individuals', category: cat, ...data });
+    const processEntity = (entityType: string, entityData: Record<string, any>) => {
+      for (const data of Object.values(entityData || {})) {
+        const typedData = data as { TaxCategories: any[]; Roles: any[] };
+
+        if (
+          typedData.TaxCategories.some(
+            (tax: any) => tax.name.toLowerCase() === taxCategory.toLowerCase(),
+          )
+        ) {
+          const rolesWithEntity = typedData.Roles.map((role: any) => ({
+            ...role,
+            entityType,
+          }));
+
+          allRoles.push(...rolesWithEntity); // push each role individually
+        }
       }
-    }
+    };
 
-    for (const [cat, data] of Object.entries(doc.Businesses || {})) {
-      if (
-        data.TaxCategories.some(
-          (tax: any) => tax.toLowerCase() === taxCategory.toLowerCase(),
-        )
-      ) {
-        result.push({ entityType: 'Businesses', category: cat, ...data });
-      }
-    }
+    processEntity('Individuals', doc.Individuals ?? {});
+    processEntity('Businesses', doc.Businesses ?? {});
 
-    if (result.length === 0)
+    if (allRoles.length === 0)
       throw new NotFoundException(`No records found for tax "${taxCategory}"`);
 
-    return result;
+    return allRoles;
+  } catch (err) {
+    console.log(err);
+    throw err;
   }
+}
+
+
+
+  //#endregion
 
   //#region Get roles 
 

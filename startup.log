@@ -402,3 +402,309 @@ MONGO_URI:'mongodb+srv://tayoraph_elor_tax_user:sb7t1AhDPTS3UGKd@taxcalculator.a
 [2025-10-14T22:39:52.688Z] App started
 [2025-10-14T22:39:52.978Z] LoggerService initialized
 [2025-10-14T22:42:21.643Z] get roles request entered service layer
+[2025-10-15T09:09:44.947Z] App started
+[2025-10-15T09:09:45.523Z] LoggerService initialized
+[2025-10-15T09:14:29.865Z] get roles request entered service layer
+[2025-10-15T09:46:56.248Z] get roles request entered service layer
+[2025-10-15T10:03:38.756Z] get roles request entered service layer
+[2025-10-15T10:04:47.767Z] get roles request entered service layer
+[2025-10-15T10:05:23.417Z] get roles request entered service layer
+[2025-10-15T10:16:33.749Z] get roles request entered service layer
+[2025-10-15T10:16:46.193Z] get roles request entered service layer
+[2025-10-15T10:16:52.520Z] get roles request entered service layer
+[2025-10-15T10:17:28.139Z] get roles request entered service layer
+[2025-10-15T10:20:21.070Z] get roles request entered service layer
+[2025-10-15T10:22:47.819Z] get roles request entered service layer
+[2025-10-15T10:25:13.328Z] get roles request entered service layer
+[2025-10-15T10:25:17.983Z] get roles request entered service layer
+[2025-10-15T10:27:47.082Z] get roles request entered service layer
+[2025-10-15T10:27:47.339Z] get roles request entered service layer
+[2025-10-15T10:27:51.031Z] get roles request entered service layer
+[2025-10-15T10:27:51.780Z] get roles request entered service layer
+[2025-10-16T08:30:35.687Z] App started
+[2025-10-16T08:30:54.229Z] LoggerService initialized
+[2025-10-16T09:04:50.747Z] App started
+[2025-10-16T09:08:40.729Z] App started
+[2025-10-16T09:08:53.354Z] LoggerService initialized
+[2025-10-16T09:38:39.256Z] get roles request entered service layer
+[2025-10-16T09:41:08.267Z] get roles request entered service layer
+[2025-10-16T10:06:36.770Z] App started
+[2025-10-16T10:06:57.637Z] LoggerService initialized
+[2025-10-16T10:07:14.687Z] get roles request entered service layer
+[2025-10-16T10:10:08.394Z] get roles request entered service layer
+[2025-10-16T10:16:52.040Z] get roles request entered service layer
+[2025-10-16T10:16:52.718Z] get roles request entered service layer
+[2025-10-16T10:17:12.780Z] get roles request entered service layer
+[2025-10-16T10:19:10.385Z] App started
+[2025-10-16T10:19:30.442Z] LoggerService initialized
+[2025-10-16T10:19:57.833Z] get roles request entered service layer
+[2025-10-16T10:20:07.767Z] get roles request entered service layer
+[2025-10-16T10:25:28.847Z] App started
+[2025-10-16T10:25:40.888Z] LoggerService initialized
+[2025-10-16T10:25:46.393Z] get roles request entered service layer
+[2025-10-16T10:29:12.102Z] get roles request entered service layer
+[2025-10-16T10:30:45.127Z] get roles request entered service layer
+[2025-10-16T10:31:16.743Z] get roles request entered service layer
+[2025-10-16T10:31:45.160Z] App started
+[2025-10-16T10:37:55.136Z] App started
+[2025-10-16T10:38:38.015Z] App started
+[2025-10-16T10:39:15.247Z] LoggerService initialized
+[2025-10-16T10:40:04.169Z] get roles request entered service layer
+[2025-10-16T10:41:04.115Z] App started
+[2025-10-16T10:41:16.412Z] LoggerService initialized
+[2025-10-16T10:41:38.081Z] get roles request entered service layer
+[2025-10-16T10:43:55.270Z] get roles request entered service layer
+[2025-10-16T10:43:57.241Z] get roles request entered service layer
+[2025-10-16T10:45:12.400Z] get roles request entered service layer
+[2025-10-16T10:45:12.422Z] get roles request entered service layer
+[2025-10-16T10:46:56.954Z] get roles request entered service layer
+[2025-10-16T10:47:39.635Z] get roles request entered service layer
+[2025-10-16T10:48:51.660Z] get roles request entered service layer
+[2025-10-16T10:51:33.411Z] get roles request entered service layer
+[2025-10-16T10:52:30.353Z] get roles request entered service layer
+[2025-10-16T10:53:17.324Z] get roles request entered service layer
+[2025-10-16T10:53:55.711Z] get roles request entered service layer
+[2025-10-16T10:55:15.071Z] get roles request entered service layer
+[2025-10-16T10:55:48.282Z] get roles request entered service layer
+[2025-10-16T10:56:44.706Z] get roles request entered service layer
+[2025-10-16T11:48:56.975Z] get roles request entered service layer
+[2025-10-16T11:49:00.989Z] get roles request entered service layer
+[2025-10-16T11:49:35.585Z] get roles request entered service layer
+[2025-10-16T11:50:10.989Z] get roles request entered service layer
+[2025-10-16T11:56:05.661Z] get roles request entered service layer
+[2025-10-16T11:56:44.849Z] get roles request entered service layer
+[2025-10-16T11:57:03.345Z] get roles request entered service layer
+[2025-10-16T11:58:18.607Z] get roles request entered service layer
+[2025-10-16T11:58:49.521Z] get roles request entered service layer
+[2025-10-16T12:00:32.733Z] get roles request entered service layer
+[2025-10-16T12:00:57.079Z] get roles request entered service layer
+[2025-10-16T12:01:15.634Z] get roles request entered service layer
+[2025-10-16T12:04:01.062Z] get roles request entered service layer
+[2025-10-16T12:05:44.612Z] get roles request entered service layer
+[2025-10-16T12:06:35.524Z] get roles request entered service layer
+[2025-10-16T12:15:14.626Z] App started
+[2025-10-16T12:15:48.473Z] LoggerService initialized
+[2025-10-16T12:16:48.597Z] App started
+[2025-10-16T12:17:04.813Z] LoggerService initialized
+[2025-10-16T12:17:20.808Z] App started
+[2025-10-16T12:17:29.789Z] LoggerService initialized
+[2025-10-16T12:17:39.529Z] get roles request entered service layer
+[2025-10-16T12:21:35.411Z] get roles request entered service layer
+[2025-10-16T12:22:00.258Z] get roles request entered service layer
+[2025-10-16T12:26:33.144Z] get roles request entered service layer
+[2025-10-16T12:28:20.803Z] get roles request entered service layer
+[2025-10-16T12:33:09.173Z] get roles request entered service layer
+[2025-10-16T12:33:09.182Z] get roles request entered service layer
+[2025-10-16T12:33:09.192Z] get roles request entered service layer
+[2025-10-16T12:33:09.201Z] get roles request entered service layer
+[2025-10-16T12:33:09.206Z] get roles request entered service layer
+[2025-10-16T12:35:51.103Z] get roles request entered service layer
+[2025-10-16T12:36:23.399Z] get roles request entered service layer
+[2025-10-16T12:36:27.048Z] get roles request entered service layer
+[2025-10-16T12:36:28.494Z] get roles request entered service layer
+[2025-10-16T12:36:38.541Z] get roles request entered service layer
+[2025-10-16T12:36:44.827Z] get roles request entered service layer
+[2025-10-16T12:37:15.670Z] get roles request entered service layer
+[2025-10-16T12:40:17.945Z] get roles request entered service layer
+[2025-10-16T12:40:19.485Z] get roles request entered service layer
+[2025-10-16T12:40:25.549Z] get roles request entered service layer
+[2025-10-16T12:40:28.233Z] get roles request entered service layer
+[2025-10-16T12:40:32.453Z] get roles request entered service layer
+[2025-10-16T12:41:30.528Z] get roles request entered service layer
+[2025-10-16T12:49:53.096Z] get roles request entered service layer
+[2025-10-16T13:05:46.013Z] App started
+[2025-10-16T13:06:06.941Z] LoggerService initialized
+[2025-10-16T13:11:41.227Z] App started
+[2025-10-16T13:11:41.777Z] LoggerService initialized
+[2025-10-16T13:15:29.868Z] App started
+[2025-10-16T13:15:30.239Z] LoggerService initialized
+[2025-10-16T13:17:14.704Z] App started
+[2025-10-16T13:17:15.018Z] LoggerService initialized
+[2025-10-16T13:22:47.878Z] App started
+[2025-10-16T13:22:48.258Z] LoggerService initialized
+[2025-10-16T13:23:13.457Z] App started
+[2025-10-16T13:23:14.089Z] LoggerService initialized
+[2025-10-16T13:24:55.184Z] App started
+[2025-10-16T13:24:55.560Z] LoggerService initialized
+[2025-10-16T13:33:12.735Z] App started
+[2025-10-16T13:33:13.191Z] LoggerService initialized
+[2025-10-16T13:40:28.933Z] App started
+[2025-10-16T13:40:29.304Z] LoggerService initialized
+[2025-10-16T13:43:18.451Z] App started
+[2025-10-16T13:43:18.920Z] LoggerService initialized
+[2025-10-16T13:43:29.927Z] App started
+[2025-10-16T13:43:30.280Z] LoggerService initialized
+[2025-10-16T13:45:20.031Z] get roles request entered service layer
+[2025-10-16T13:47:35.144Z] get roles request entered service layer
+[2025-10-16T13:47:55.945Z] get roles request entered service layer
+[2025-10-16T13:54:10.219Z] get roles request entered service layer
+[2025-10-16T13:59:47.946Z] get roles request entered service layer
+[2025-10-16T14:25:58.943Z] get roles request entered service layer
+[2025-10-16T15:03:10.662Z] App started
+[2025-10-16T15:03:11.178Z] LoggerService initialized
+[2025-10-16T15:03:42.009Z] get roles request entered service layer
+[2025-10-16T15:05:18.010Z] get roles request entered service layer
+[2025-10-16T15:07:28.086Z] get roles request entered service layer
+[2025-10-16T15:07:28.677Z] get roles request entered service layer
+[2025-10-16T15:08:56.308Z] App started
+[2025-10-16T15:08:56.646Z] LoggerService initialized
+[2025-10-16T15:12:10.408Z] get roles request entered service layer
+[2025-10-16T15:12:34.256Z] get roles request entered service layer
+[2025-10-16T15:12:46.905Z] get roles request entered service layer
+[2025-10-16T15:13:06.692Z] get roles request entered service layer
+[2025-10-16T15:13:33.948Z] get roles request entered service layer
+[2025-10-17T12:35:00.509Z] App started
+[2025-10-17T12:37:27.203Z] App started
+[2025-10-17T12:37:27.635Z] LoggerService initialized
+[2025-10-17T12:54:25.231Z] App started
+[2025-10-17T12:54:25.733Z] LoggerService initialized
+[2025-10-17T13:00:51.006Z] App started
+[2025-10-17T13:00:51.739Z] LoggerService initialized
+[2025-10-17T13:06:41.716Z] get roles request entered service layer
+[2025-10-17T13:15:05.972Z] App started
+[2025-10-17T13:15:07.399Z] LoggerService initialized
+[2025-10-17T13:23:28.412Z] App started
+[2025-10-17T13:23:29.761Z] LoggerService initialized
+[2025-10-17T13:57:33.501Z] App started
+[2025-10-17T13:57:34.668Z] LoggerService initialized
+[2025-10-17T13:59:23.225Z] App started
+[2025-10-17T13:59:23.802Z] LoggerService initialized
+[2025-10-17T14:01:29.302Z] App started
+[2025-10-17T14:01:30.042Z] LoggerService initialized
+[2025-10-17T14:04:55.102Z] App started
+[2025-10-17T14:04:55.729Z] LoggerService initialized
+[2025-10-17T14:06:32.776Z] App started
+[2025-10-17T14:06:33.350Z] LoggerService initialized
+[2025-10-17T14:39:47.410Z] get roles request entered service layer
+[2025-10-17T14:40:18.902Z] get roles request entered service layer
+[2025-10-17T14:40:43.737Z] get roles request entered service layer
+[2025-10-17T14:41:28.079Z] get roles request entered service layer
+[2025-10-17T14:43:11.267Z] get roles request entered service layer
+[2025-10-17T14:47:24.066Z] get roles request entered service layer
+[2025-10-17T14:47:28.016Z] get roles request entered service layer
+[2025-10-17T14:48:53.321Z] get roles request entered service layer
+[2025-10-17T14:49:04.158Z] get roles request entered service layer
+[2025-10-17T14:49:11.804Z] get roles request entered service layer
+[2025-10-17T15:01:37.463Z] get roles request entered service layer
+[2025-10-17T15:08:05.422Z] App started
+[2025-10-17T15:08:06.037Z] LoggerService initialized
+[2025-10-17T15:09:49.316Z] App started
+[2025-10-17T15:09:49.893Z] LoggerService initialized
+[2025-10-17T15:13:49.022Z] App started
+[2025-10-17T15:13:49.419Z] LoggerService initialized
+[2025-10-17T15:20:35.296Z] App started
+[2025-10-17T15:20:35.609Z] LoggerService initialized
+[2025-10-17T15:21:26.313Z] App started
+[2025-10-17T15:21:26.628Z] LoggerService initialized
+[2025-10-17T15:23:08.904Z] App started
+[2025-10-17T15:23:09.246Z] LoggerService initialized
+[2025-10-17T15:23:34.311Z] App started
+[2025-10-17T15:23:34.590Z] LoggerService initialized
+[2025-10-17T15:25:00.364Z] get roles request entered service layer
+[2025-10-17T15:25:10.385Z] get roles request entered service layer
+[2025-10-17T15:25:21.537Z] get roles request entered service layer
+[2025-10-17T15:25:25.539Z] get roles request entered service layer
+[2025-10-17T15:25:28.898Z] get roles request entered service layer
+[2025-10-17T15:25:32.237Z] get roles request entered service layer
+[2025-10-17T15:25:34.073Z] get roles request entered service layer
+[2025-10-17T15:25:36.037Z] get roles request entered service layer
+[2025-10-17T15:25:39.501Z] get roles request entered service layer
+[2025-10-17T15:25:42.130Z] get roles request entered service layer
+[2025-10-17T15:25:43.388Z] get roles request entered service layer
+[2025-10-17T15:26:19.491Z] get roles request entered service layer
+[2025-10-17T15:27:04.143Z] get roles request entered service layer
+[2025-10-17T15:27:33.962Z] get roles request entered service layer
+[2025-10-17T15:27:52.475Z] get roles request entered service layer
+[2025-10-17T15:29:57.100Z] get roles request entered service layer
+[2025-10-17T16:13:12.796Z] get roles request entered service layer
+[2025-10-17T16:14:40.510Z] get roles request entered service layer
+[2025-10-17T16:15:59.107Z] get roles request entered service layer
+[2025-10-17T16:16:18.617Z] get roles request entered service layer
+[2025-10-17T16:16:50.970Z] get roles request entered service layer
+[2025-10-17T16:18:49.309Z] get roles request entered service layer
+[2025-10-17T16:19:09.460Z] get roles request entered service layer
+[2025-10-17T16:19:31.511Z] get roles request entered service layer
+[2025-10-17T16:20:36.857Z] get roles request entered service layer
+[2025-10-17T16:21:12.859Z] get roles request entered service layer
+[2025-10-17T16:22:50.401Z] get roles request entered service layer
+[2025-10-17T16:23:26.803Z] get roles request entered service layer
+[2025-10-17T16:37:08.292Z] get roles request entered service layer
+[2025-10-17T16:39:52.109Z] get roles request entered service layer
+[2025-10-17T16:45:08.111Z] get roles request entered service layer
+[2025-10-17T20:17:52.342Z] get roles request entered service layer
+[2025-10-17T20:33:40.712Z] App started
+[2025-10-17T20:33:55.391Z] get roles request entered service layer
+[2025-10-17T20:35:59.025Z] App started
+[2025-10-17T20:35:59.724Z] LoggerService initialized
+[2025-10-17T20:36:08.309Z] get roles request entered service layer
+[2025-10-17T20:40:20.356Z] App started
+[2025-10-17T20:40:20.676Z] LoggerService initialized
+[2025-10-17T20:40:27.803Z] App started
+[2025-10-17T20:40:41.724Z] App started
+[2025-10-17T20:41:01.290Z] App started
+[2025-10-17T20:41:01.722Z] LoggerService initialized
+[2025-10-17T20:45:06.481Z] get roles request entered service layer
+[2025-10-17T20:45:18.766Z] get roles request entered service layer
+[2025-10-17T20:50:17.016Z] get roles request entered service layer
+[2025-10-17T20:53:56.188Z] get roles request entered service layer
+[2025-10-17T20:54:04.228Z] get roles request entered service layer
+[2025-10-17T20:54:17.000Z] get roles request entered service layer
+[2025-10-17T20:54:34.120Z] get roles request entered service layer
+[2025-10-17T21:28:27.728Z] get roles request entered service layer
+[2025-10-17T21:31:12.931Z] get roles request entered service layer
+[2025-10-17T21:31:16.237Z] get roles request entered service layer
+[2025-10-17T21:31:26.676Z] get roles request entered service layer
+[2025-10-17T21:34:52.489Z] get roles request entered service layer
+[2025-10-17T21:35:47.936Z] get roles request entered service layer
+[2025-10-17T21:35:53.138Z] get roles request entered service layer
+[2025-10-17T21:41:44.864Z] get roles request entered service layer
+[2025-10-17T21:47:59.384Z] get roles request entered service layer
+[2025-10-17T21:50:35.147Z] get roles request entered service layer
+[2025-10-17T21:55:28.175Z] get roles request entered service layer
+[2025-10-17T21:56:20.652Z] get roles request entered service layer
+[2025-10-17T21:56:24.000Z] get roles request entered service layer
+[2025-10-17T22:00:24.493Z] get roles request entered service layer
+[2025-10-17T22:00:41.068Z] get roles request entered service layer
+[2025-10-17T22:02:24.350Z] get roles request entered service layer
+[2025-10-17T22:03:52.284Z] get roles request entered service layer
+[2025-10-17T22:04:42.189Z] get roles request entered service layer
+[2025-10-17T22:04:53.931Z] get roles request entered service layer
+[2025-10-17T22:06:26.689Z] get roles request entered service layer
+[2025-10-17T22:06:35.976Z] get roles request entered service layer
+[2025-10-17T22:07:41.242Z] get roles request entered service layer
+[2025-10-17T22:10:02.926Z] get roles request entered service layer
+[2025-10-17T22:10:30.784Z] get roles request entered service layer
+[2025-10-17T22:10:39.122Z] get roles request entered service layer
+[2025-10-17T22:10:43.654Z] get roles request entered service layer
+[2025-10-17T22:11:56.570Z] get roles request entered service layer
+[2025-10-17T22:12:42.327Z] get roles request entered service layer
+[2025-10-17T22:12:49.905Z] get roles request entered service layer
+[2025-10-17T22:13:25.592Z] get roles request entered service layer
+[2025-10-17T22:16:14.671Z] App started
+[2025-10-17T22:16:15.132Z] LoggerService initialized
+[2025-10-17T22:28:28.967Z] App started
+[2025-10-17T22:28:29.314Z] LoggerService initialized
+[2025-10-17T22:31:29.843Z] get roles request entered service layer
+[2025-10-17T22:33:37.660Z] get roles request entered service layer
+[2025-10-17T22:34:56.952Z] get roles request entered service layer
+[2025-10-17T22:35:05.907Z] get roles request entered service layer
+[2025-10-17T22:35:15.626Z] get roles request entered service layer
+[2025-10-17T22:38:33.176Z] App started
+[2025-10-17T22:38:33.655Z] LoggerService initialized
+[2025-10-17T22:39:18.075Z] get roles request entered service layer
+[2025-10-17T22:39:42.856Z] get roles request entered service layer
+[2025-10-17T22:39:51.043Z] get roles request entered service layer
+[2025-10-17T22:41:26.108Z] App started
+[2025-10-17T22:41:26.512Z] LoggerService initialized
+[2025-10-17T22:43:47.559Z] get roles request entered service layer
+[2025-10-17T22:44:52.608Z] get roles request entered service layer
+[2025-10-17T22:45:39.324Z] get roles request entered service layer
+[2025-10-17T22:49:27.051Z] App started
+[2025-10-17T22:49:28.745Z] LoggerService initialized
+[2025-10-17T22:49:29.219Z] get roles request entered service layer
+[2025-10-17T22:51:31.594Z] App started
+[2025-10-17T22:51:31.912Z] LoggerService initialized
+[2025-10-17T22:55:50.136Z] get roles request entered service layer
+[2025-10-17T22:57:01.842Z] get roles request entered service layer
+[2025-10-17T22:57:38.517Z] get roles request entered service layer
+[2025-10-17T22:58:46.549Z] get roles request entered service layer
