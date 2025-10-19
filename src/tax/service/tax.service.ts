@@ -12,7 +12,6 @@ export class TaxService {
 
   async findAll() {
     let tax = this.taxModel.find().exec();
-    console.log("tax: ",tax)
     return tax
   }
 

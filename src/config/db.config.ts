@@ -20,7 +20,7 @@ export const MongoDBConfig: MongooseModuleAsyncOptions = {
     const url=  `mongodb+srv://${authPart}${host}?${replica}`; 
     
     return {
-      uri: FULLURI_PD, 
+      uri: process.env.NODE_ENV === 'production'? FULLURI_PD:FULLURI_DEV, 
       dbName,
       useUnifiedTopology: true,
     };

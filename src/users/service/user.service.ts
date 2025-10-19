@@ -9,8 +9,6 @@ import { AppConfigService } from '../../config/config.service';
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>, 
 private config: AppConfigService) {
-    console.log('MongoDB Host:', this.config.dbHost);
-    console.log('JWT Secret:', this.config.jwtSecret);
   }
 
   async create(user: { email: string; password: string; phone: string; tin: string }) {

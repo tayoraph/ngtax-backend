@@ -456,7 +456,9 @@ async calculateTaxByRoleAndIncome(roleTitle: string, income: number): Promise<an
 
   const calculateCategoryTax = (taxCategory: any, amount: number): number => {
     if (checkExemptions(taxCategory, amount)) return 0;
-    return (amount * (taxCategory.ratePercent || 0)) / 100;
+    return   taxCategory.brackets?.length 
+    ? this.calculateProgressiveTax(taxCategory, amount) // do progressive tax
+    : (amount * (taxCategory.ratePercent || 0)) / 100; //do flat rate 
   };
 
   // Handle individuals
@@ -499,20 +501,7 @@ async calculateTaxByRoleAndIncome(roleTitle: string, income: number): Promise<an
         totalTax += taxAmount;
       }
 
-      //**** */ to add rate to the tax category 
-      //  for (const taxCategory of category.TaxCategories) {
-      //   const isExempted = checkExemptions(taxCategory, income);
-      //   const taxAmount = calculateCategoryTax(taxCategory, income);
-      //   const taxData = { name: taxCategory.name, rate: taxCategory.rate || 0 };
-
-      //   if (isExempted) {
-      //     exemptedTaxCategories.push(taxData);
-      //   } else {
-      //     taxCategories.push(taxData);
-      //   }
-
-      //   totalTax += taxAmount;
-      // }
+   
 
       let resp= {
         categoryType: 'individual',
@@ -526,7 +515,7 @@ async calculateTaxByRoleAndIncome(roleTitle: string, income: number): Promise<an
         monthlyTax: Number((totalTax / 12).toFixed(2))
       };
     
-    console.log(resp)
+    // console.log(resp)
     return resp
     }
   }
@@ -586,6 +575,35 @@ async calculateTaxByRoleAndIncome(roleTitle: string, income: number): Promise<an
   }
 
   throw new NotFoundException(`Role "${roleTitle}" not found in any tax category.`);
+}
+
+
+// calculate progressive tax
+calculateProgressiveTax(foundTax:any, incomeOrTurnover:number) : number{
+  // Implementation for progressive tax calculation goes here
+   // 🧩 Progressive Brackets
+  
+      let remaining = incomeOrTurnover;
+      let totalTax = 0;
+      let lastLimit = 0;
+  
+      for (const bracket of foundTax.brackets) {
+        if (bracket.upTo) {
+          const taxable = Math.min(remaining, bracket.upTo - lastLimit);
+          totalTax += (taxable * bracket.ratePercent) / 100;
+          remaining -= taxable;
+          lastLimit = bracket.upTo;
+          if (remaining <= 0) break;
+        } else if (bracket.above) {
+          totalTax += (remaining * bracket.ratePercent) / 100;
+          break;
+        }
+      }
+  
+      const taxToPay = Math.round(totalTax);
+      return  taxToPay
+   
+  
 }
 
 
