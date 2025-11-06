@@ -1,13 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class TaxCalculationByTaxNameRoleAndIncomeDto {
-      @ApiProperty()
-    
+@ApiProperty()
   role: string;
-      @ApiProperty()
 
+@ApiProperty()
   taxName: string;
-      @ApiProperty()
 
+@ApiProperty()
   incomeOrTurnover: number;
+
+@ApiProperty()
+ fixedAssets: number
 }

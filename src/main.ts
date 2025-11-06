@@ -30,8 +30,8 @@ logStream.write(`[${new Date().toISOString()}] App started\n`);
   SwaggerModule.setup('eltax', app, document);
   var port = process.env.PORT ||7777
   await app.listen(port);
-  console.log(`App is running at ${await app.getUrl()}`)
-  console.log(`Current environment is ${process.env.NODE_ENV}`)
+  logStream.write(`App is running at ${await app.getUrl()}`)
+  logStream.write(`Current environment is ${process.env.NODE_ENV}`)
 
  
 

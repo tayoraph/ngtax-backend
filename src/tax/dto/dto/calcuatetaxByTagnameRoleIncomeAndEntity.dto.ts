@@ -9,4 +9,6 @@ export class  TaxCalculationByTagnameRoleaEntityndIncomeInput {
   incomeOrTurnover: number;
 @ApiProperty()
   userType?: 'Individuals' | 'Businesses'; // optional filter
+  @ApiProperty()
+  fixedAssets?: number
 }

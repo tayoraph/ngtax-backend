@@ -133,7 +133,7 @@ async getRolesByTaxCategory(taxCategory: string) {
 
     return allRoles;
   } catch (err) {
-    console.log(err);
+    this.logger.log(JSON.stringify(err));
     throw err;
   }
 }
@@ -753,8 +753,8 @@ calculateProgressiveTax(foundTax:any, incomeOrTurnover:number) : number{
 
 //#region  calculate by role, taxname  and income
  
-    async calculateTaxByRoleAndTaxnameAndIncome(dto: { role: string; taxName: string; incomeOrTurnover: number }) {
-    const { role, taxName, incomeOrTurnover } = dto;
+    async calculateTaxByRoleAndTaxnameAndIncome(dto: { role: string; taxName: string; incomeOrTurnover: number, fixedAssets?: number }) {
+    const { role, taxName, incomeOrTurnover,fixedAssets } = dto;
     const taxData = await this.taxReformModel.find().lean();
     if (!taxData) throw new NotFoundException('Tax data not found.');
 
@@ -763,6 +763,7 @@ calculateProgressiveTax(foundTax:any, incomeOrTurnover:number) : number{
       taxName,
       incomeOrTurnover,
       taxData: taxData,
+      fixedAssets
     });
   }
 //#endregion
